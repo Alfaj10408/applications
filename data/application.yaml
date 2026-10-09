@@ -859,3 +859,47 @@ sections:
             label: Certifications
             value: ""
             hint: None documented in your CV. Add locally if you hold any.
+
+  # ───────────────────────────── 7. OUTREACH ─────────────────────────────
+  - id: outreach
+    title: Outreach templates
+    intro: Generic messages. Replace the bracketed placeholders before sending; the connection-request note must stay under 300 characters.
+    cards:
+      - id: linkedin_senior
+        title: LinkedIn — senior contact at a large tech company (2nd-degree, no prior contact)
+        subtitle: About 300 words · send as a message or InMail after connecting
+        open: true
+        fields:
+          - id: placeholders
+            label: Placeholders to replace
+            value: "[First name] · [mutual connection or shared network] · [Company] · [team or area] · [specific product or area]"
+          - id: message
+            label: Full message (about 300 words)
+            multiline: true
+            value: |-
+              Hi [First name],
+
+              We're connected through [mutual connection or shared network], and your work on [team or area] at [Company] sits close to what I spend my days on, so I wanted to reach out directly rather than through a form.
+
+              I'm a Ph.D. student in Biomedical Engineering at Purdue University (Leslie A. Geddes Fellow) and a concurrent M.S. student in Electrical and Computer Engineering. My research asks how machine learning systems fail, and how to train and evaluate them so those failures become measurable and fixable. Three current threads: an exact-simulator evaluation that decomposes how LLMs fail on long-horizon tasks, showing that failure composition reorganizes with scale and reasoning mode (under review at ICLR 2027); TIDE, a training objective that drives blank-image hallucination in vision-language models to zero across six models (manuscript for CVPR 2027); and a moment-based spiking-to-analog interface for event cameras (under review at ICASSP 2027).
+
+              Before Purdue I spent three years shipping production ML in healthcare: LoRA fine-tuning of clinical LLMs with hallucination checks at Augmedix, Stable Diffusion and ControlNet pipelines at IDEEZA, and a calibrated 17-finding chest X-ray classifier at RadAssist, each deployed with its evaluation loop attached.
+
+              I'm targeting a Summer 2027 research or applied-science internship where rigorous evaluation of large models matters, and [Company]'s work on [specific product or area] is exactly that. I'd value fifteen minutes of your perspective on where this kind of work is headed at [Company], and on which team I should be talking to. I'm glad to send a two-page CV or a one-page summary of any of the projects above.
+
+              Thank you for reading. Either way, I'll keep following your work.
+
+              Best regards,
+              Alfaj Uddin Ahmed
+              Ph.D. Student, Biomedical Engineering · Purdue University
+              https://alfaj10408.github.io/
+          - id: connection_note
+            label: Connection-request note (under 300 characters)
+            multiline: true
+            value: |-
+              Hi [First name], we share [mutual connection or network]. I'm a Purdue BME Ph.D. student working on LLM and VLM evaluation (ICLR/CVPR 2027 manuscripts) after three years in healthcare ML. I'd value a brief exchange about [team or area] at [Company]. Thank you.
+          - id: followup
+            label: Follow-up after one week (short)
+            multiline: true
+            value: |-
+              Hi [First name], following up in case this slipped by. I'd still welcome fifteen minutes on [team or area] at [Company] whenever convenient, and I'm happy to send a short written summary instead if that's easier. Thank you.
