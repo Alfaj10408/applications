@@ -236,6 +236,33 @@
     countEl.textContent = 'Local data cleared. ' + fieldEls.length + ' fields';
   });
 
+  /* ---------- full screen ---------- */
+  var fsBtn = document.getElementById('cc-fullscreen');
+  var root = document.documentElement;
+  function fsActive() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function fsSupported() { return !!(root.requestFullscreen || root.webkitRequestFullscreen); }
+  function syncFsButton() {
+    if (!fsBtn) return;
+    var on = fsActive();
+    fsBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    fsBtn.textContent = on ? 'Exit full screen' : 'Full screen';
+  }
+  if (fsBtn) {
+    if (!fsSupported()) { fsBtn.hidden = true; }
+    fsBtn.addEventListener('click', function () {
+      if (fsActive()) {
+        (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      } else {
+        var req = root.requestFullscreen || root.webkitRequestFullscreen;
+        var p = req.call(root);
+        if (p && p.catch) p.catch(function () { countEl.textContent = 'Full screen was blocked by the browser.'; });
+      }
+    });
+    document.addEventListener('fullscreenchange', syncFsButton);
+    document.addEventListener('webkitfullscreenchange', syncFsButton);
+    syncFsButton();
+  }
+
   // Open the card that a hash link points to
   function openHashTarget() {
     var h = window.location.hash;
