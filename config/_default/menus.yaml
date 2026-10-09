@@ -1,0 +1,7 @@
+main:
+  - name: Copy Center
+    url: /
+    weight: 10
+  - name: Portfolio
+    url: https://alfaj10408.github.io/
+    weight: 20

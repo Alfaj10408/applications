@@ -1,0 +1,214 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# HUGO BLOX CONFIGURATION
+# Schema: hugoblox.com/schema/v2
+# Documentation: https://docs.hugoblox.com/
+# ══════════════════════════════════════════════════════════════════════════════
+hugoblox:
+  schema: "2.0"
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # IDENTITY
+  # ────────────────────────────────────────────────────────────────────────────
+  identity:
+    name: "Alfaj Uddin Ahmed"
+    organization: ""
+    type: person
+    tagline: "Internship application copy center"
+    description: "Private-by-design copy center for filling out internship application forms. Professional fields come from the public CV; personal details stay in this browser."
+    social:
+      twitter: "AlfajUddin10408"
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # THEME
+  # ────────────────────────────────────────────────────────────────────────────
+  theme:
+    mode: system
+    pack: "default"
+    colors:
+      primary: ""
+      secondary: ""
+      neutral: ""
+    colors_light: {}
+    colors_dark: {}
+    surfaces:
+      background: ""
+      foreground: ""
+      header:
+        background: ""
+        foreground: ""
+      footer:
+        background: ""
+        foreground: ""
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # TYPOGRAPHY
+  # ────────────────────────────────────────────────────────────────────────────
+  typography:
+    pack: "academic"
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # LAYOUT
+  # ────────────────────────────────────────────────────────────────────────────
+  layout:
+    radius: "md"
+    spacing: "comfortable"
+    avatar_shape: circle
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # HEADER
+  # ────────────────────────────────────────────────────────────────────────────
+  header:
+    enable: true
+    style: navbar
+    sticky: true
+    align: center
+    search: false
+    theme_toggle: true
+    theme_picker: false
+    language_switcher: false
+    cta:
+      enable: false
+      text: ""
+      url: ""
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # FOOTER
+  # ────────────────────────────────────────────────────────────────────────────
+  footer:
+    style: minimal
+    language_switcher: false
+    text: ""
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # COPYRIGHT
+  # ────────────────────────────────────────────────────────────────────────────
+  copyright:
+    notice: "© {year} {name}"
+    license:
+      type: custom
+      label: ""
+      url: ""
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # SEO
+  # ────────────────────────────────────────────────────────────────────────────
+  seo:
+    title: ""
+    location:
+      address:
+        street: ""
+        city: ""
+        region: ""
+        postal_code: ""
+        country: ""
+      coordinates:
+        latitude: null
+        longitude: null
+      phone: ""
+    ai:
+      allow: []
+      disallow:
+        - /
+      note: "Personal utility page; not intended for indexing."
+      contact: ""
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # CONTENT
+  # ────────────────────────────────────────────────────────────────────────────
+  content:
+    math:
+      enable: false
+    toc:
+      enable: false
+    reading_time:
+      enable: false
+    citations:
+      style: apa
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # SEARCH
+  # ────────────────────────────────────────────────────────────────────────────
+  search:
+    enable: false
+    suggestions: []
+    quick_actions: []
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # COMMENTS
+  # ────────────────────────────────────────────────────────────────────────────
+  comments:
+    enable: false
+    provider: ""
+    giscus:
+      repo: ""
+      repo_id: ""
+      category: ""
+      category_id: ""
+    disqus:
+      shortname: ""
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # ANALYTICS (none configured)
+  # ────────────────────────────────────────────────────────────────────────────
+  analytics:
+    google:
+      measurement_id: ""
+    google_tag_manager:
+      container_id: ""
+    plausible:
+      domain: ""
+    fathom:
+      site_id: ""
+    pirsch:
+      site_id: ""
+    clarity:
+      project_id: ""
+    baidu:
+      site_id: ""
+
+  verification:
+    google: ""
+    bing: ""
+    baidu: ""
+    yandex: ""
+    pinterest: ""
+    naver: ""
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # REPOSITORY
+  # ────────────────────────────────────────────────────────────────────────────
+  repository:
+    enable: false
+    url: "https://github.com/Alfaj10408/applications"
+    branch: main
+    content_dir: content
+
+  locale:
+    date_format: "Jan 2, 2006"
+    time_format: "3:04 PM"
+    address_format: en-us
+
+  security:
+    csp:
+      policy: ""
+      report_only: false
+    frame_options: sameorigin
+    permissions_policy: ""
+
+  privacy:
+    enable: false
+    anonymize_analytics: true
+
+  debug:
+    enable: false
+    hud:
+      position: bottom-left
+      opacity: 1.0
+    export_logs: true
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # ATTRIBUTION — keep "Powered by HugoBlox" (template is MIT licensed; see LICENSE.md)
+  # ────────────────────────────────────────────────────────────────────────────
+  pro:
+    hide_attribution: true
+    affiliate_code: ""

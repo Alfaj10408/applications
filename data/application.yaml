@@ -1,0 +1,861 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# Application Copy Center — structured content
+#
+# Sources: master_resume/base_resume.tex (2026-10-07 revision) and APPLICATION_CONTEXT.md.
+# Rules: every value must be traceable to those files. Fields with `private: true`
+# have NO value here on purpose; they are typed into the browser and stored in
+# localStorage only. Fields with an empty value and a `hint` are not documented
+# in the sources and can be filled locally.
+#
+# Schema:
+#   sections[]: id, title, intro?, cards[]
+#   cards[]:    id, title, subtitle?, open? (true = expanded by default), fields[], bullets[]?
+#   fields[]:   id, label, value?, private?, multiline?, hint?, url? (renders a link next to the value)
+#   bullets[]:  plain strings; each becomes "Bullet n" plus a joined "Full description" field
+# ──────────────────────────────────────────────────────────────────────────────
+updated: 2026-10-08
+
+sections:
+  # ───────────────────────────── 1. PERSONAL ─────────────────────────────
+  - id: personal
+    title: Personal & contact
+    intro: Name, contact, address, and links. Phone and street address are private and live only in this browser.
+    cards:
+      - id: name
+        title: Name
+        open: true
+        fields:
+          - id: first
+            label: First name
+            value: Alfaj Uddin
+          - id: middle
+            label: Middle name
+            value: ""
+            hint: No middle name (confirmed 2026-10-08). Leave blank on forms.
+          - id: last
+            label: Last name
+            value: Ahmed
+          - id: full
+            label: Full name
+            value: Alfaj Uddin Ahmed
+          - id: pronunciation
+            label: Preferred name
+            value: Alfaj
+      - id: contact
+        title: Contact
+        open: true
+        fields:
+          - id: email_primary
+            label: Primary email
+            value: alfajuddinahmed1@gmail.com
+          - id: email_purdue
+            label: University email
+            value: ahmed436@purdue.edu
+          - id: phone
+            label: Phone
+            private: true
+            hint: Stored only in this browser. Enter with country code, e.g. +1 ….
+      - id: address
+        title: Address
+        open: true
+        fields:
+          - id: line1
+            label: Address line 1
+            private: true
+          - id: line2
+            label: Address line 2
+            private: true
+          - id: city
+            label: City
+            value: West Lafayette
+          - id: state
+            label: State
+            value: Indiana
+          - id: state_code
+            label: State (abbreviation)
+            value: IN
+          - id: zip
+            label: ZIP code
+            private: true
+          - id: country
+            label: Country
+            value: United States
+          - id: country_code
+            label: Country (abbreviation)
+            value: US
+      - id: links
+        title: Links
+        open: true
+        fields:
+          - id: portfolio
+            label: Portfolio / personal website
+            value: https://alfaj10408.github.io/
+            url: https://alfaj10408.github.io/
+          - id: linkedin
+            label: LinkedIn
+            value: https://www.linkedin.com/in/alfaj-uddin-ahmed-0a5ab514a/
+            url: https://www.linkedin.com/in/alfaj-uddin-ahmed-0a5ab514a/
+          - id: github
+            label: GitHub
+            value: https://github.com/Alfaj10408
+            url: https://github.com/Alfaj10408
+          - id: scholar
+            label: Google Scholar
+            value: https://scholar.google.com/citations?user=mGQcwU4AAAAJ&hl=en
+            url: https://scholar.google.com/citations?user=mGQcwU4AAAAJ&hl=en
+          - id: orcid
+            label: ORCID
+            value: https://orcid.org/0009-0004-4991-6551
+            url: https://orcid.org/0009-0004-4991-6551
+          - id: orcid_id
+            label: ORCID iD (number only)
+            value: 0009-0004-4991-6551
+          - id: x
+            label: X (Twitter)
+            value: https://x.com/AlfajUddin10408
+            url: https://x.com/AlfajUddin10408
+          - id: cv_pdf
+            label: CV (PDF)
+            value: https://alfaj10408.github.io/uploads/alfaj-uddin-ahmed-cv.pdf
+            url: https://alfaj10408.github.io/uploads/alfaj-uddin-ahmed-cv.pdf
+      - id: form_answers
+        title: Application answers (local only)
+        subtitle: Not in the CV. Answer once here; nothing is saved outside this browser.
+        fields:
+          - id: work_auth
+            label: Work authorization status
+            private: true
+            hint: Not inferred from your files. Enter the exact wording you use on forms.
+          - id: sponsorship
+            label: Will you require sponsorship?
+            private: true
+          - id: start_date
+            label: Earliest start date
+            private: true
+          - id: availability
+            label: Availability (term / weeks / hours)
+            private: true
+          - id: relocation
+            label: Willing to relocate?
+            private: true
+          - id: hear_about
+            label: How did you hear about this role?
+            private: true
+
+  # ───────────────────────────── 2. EDUCATION ─────────────────────────────
+  - id: education
+    title: Education
+    intro: One card per institution. GPA only where documented. Expected graduation dates are not in the CV; add them locally.
+    cards:
+      - id: purdue_phd
+        title: Purdue University — Ph.D., Biomedical Engineering
+        subtitle: Aug 2025 – present · Leslie A. Geddes Fellow
+        open: true
+        fields:
+          - id: institution
+            label: Institution
+            value: Purdue University
+          - id: school
+            label: School / department
+            value: Weldon School of Biomedical Engineering
+          - id: degree
+            label: Degree
+            value: Doctor of Philosophy (Ph.D.)
+          - id: degree_short
+            label: Degree (short)
+            value: Ph.D.
+          - id: field
+            label: Field of study
+            value: Biomedical Engineering
+          - id: concentration
+            label: Concentration / area
+            value: Computational Medical Imaging and Machine Learning
+          - id: location
+            label: Location
+            value: West Lafayette, Indiana, United States
+          - id: start
+            label: Start date
+            value: August 2025
+          - id: start_mmyyyy
+            label: Start date (MM/YYYY)
+            value: 08/2025
+          - id: end
+            label: Expected graduation
+            value: ""
+            hint: Not documented in the CV. Add locally once decided.
+          - id: status
+            label: Status
+            value: In progress
+          - id: gpa
+            label: GPA
+            value: ""
+            hint: Not documented in the CV; leave blank on forms unless you add it locally.
+          - id: fellowship
+            label: Fellowship
+            value: Leslie A. Geddes Fellow (awarded June 2025)
+          - id: dissertation
+            label: Dissertation area
+            value: Machine learning for pediatric fracture and abuse detection from radiographs; LLM and VLM reliability
+          - id: advisors
+            label: Advisors
+            value: Dr. Rachel K. Surowiec (QBIS Lab, Purdue) and Dr. Christopher L. Newman (Indiana University School of Medicine)
+      - id: purdue_ms
+        title: Purdue University — M.S., Electrical and Computer Engineering
+        subtitle: Aug 2026 – present · concurrent with the Ph.D.
+        fields:
+          - id: institution
+            label: Institution
+            value: Purdue University
+          - id: degree
+            label: Degree
+            value: Master of Science (M.S.)
+          - id: degree_short
+            label: Degree (short)
+            value: M.S.
+          - id: field
+            label: Field of study
+            value: Electrical and Computer Engineering
+          - id: location
+            label: Location
+            value: West Lafayette, Indiana, United States
+          - id: start
+            label: Start date
+            value: August 2026
+          - id: start_mmyyyy
+            label: Start date (MM/YYYY)
+            value: 08/2026
+          - id: end
+            label: Expected graduation
+            value: ""
+            hint: Not documented in the CV. Add locally once decided.
+          - id: status
+            label: Status
+            value: In progress (concurrent with the Ph.D.)
+          - id: gpa
+            label: GPA
+            value: ""
+            hint: Not documented in the CV.
+      - id: buet
+        title: BUET — B.Sc., Biomedical Engineering
+        subtitle: May 2017 – May 2022 · GPA 3.43/4.00
+        fields:
+          - id: institution
+            label: Institution
+            value: Bangladesh University of Engineering and Technology (BUET)
+          - id: institution_short
+            label: Institution (short)
+            value: BUET
+          - id: degree
+            label: Degree
+            value: Bachelor of Science (B.Sc.)
+          - id: degree_short
+            label: Degree (short)
+            value: B.Sc.
+          - id: field
+            label: Field of study
+            value: Biomedical Engineering
+          - id: location
+            label: Location
+            value: Dhaka, Bangladesh
+          - id: start
+            label: Start date
+            value: May 2017
+          - id: start_mmyyyy
+            label: Start date (MM/YYYY)
+            value: 05/2017
+          - id: end
+            label: Graduation date
+            value: May 2022
+          - id: end_mmyyyy
+            label: Graduation date (MM/YYYY)
+            value: 05/2022
+          - id: gpa
+            label: GPA
+            value: 3.43/4.00
+          - id: gpa_number
+            label: GPA (number only)
+            value: "3.43"
+          - id: gpa_scale
+            label: GPA scale
+            value: "4.00"
+          - id: thesis
+            label: Undergraduate thesis
+            value: Automated COVID-19 infection detection and segmentation from lung CT volumes using UNet++ and 3D convolutional networks
+
+  # ───────────────────────────── 3. EXPERIENCE ─────────────────────────────
+  - id: experience
+    title: Work & research experience
+    intro: One card per position. Bullets are copied individually or all together as the full description.
+    cards:
+      - id: purdue_gra
+        title: Purdue University — Graduate Research Assistant
+        subtitle: Aug 2025 – present · West Lafayette, IN
+        open: true
+        fields:
+          - id: employer
+            label: Employer / institution
+            value: Purdue University
+          - id: department
+            label: Department
+            value: Weldon School of Biomedical Engineering
+          - id: title
+            label: Job title
+            value: Graduate Research Assistant
+          - id: title_long
+            label: Job title (with fellowship)
+            value: Leslie A. Geddes Fellow and Graduate Research Assistant
+          - id: type
+            label: Employment type
+            value: Research assistantship (graduate)
+          - id: location
+            label: Location
+            value: West Lafayette, Indiana, United States
+          - id: start
+            label: Start date
+            value: August 2025
+          - id: start_mmyyyy
+            label: Start date (MM/YYYY)
+            value: 08/2025
+          - id: end
+            label: End date
+            value: Present
+          - id: current
+            label: Currently working here?
+            value: "Yes"
+        bullets:
+          - "Long-horizon LLM execution (submitted to ICLR 2027): showed that benchmark accuracy hides how LLMs fail on multi-step deterministic tasks by building an exact-simulator evaluation that separates correct responses from decision errors, state errors, token exhaustion, malformed outputs, and noncompliance, run as 800-sample reasoning-on/off grids on Qwen3 models served through vLLM on dual-GPU nodes, with Clopper–Pearson and clustered uncertainty estimates."
+          - "Found that failure composition shifts with scale without a monotonic law: smaller models choose wrong moves while larger models choose correct moves but misreport the resulting state; reasoning mode collapsed move-selection errors from roughly 60% to 0% while leaving state-transcription errors unchanged, and position labels cut Qwen3-4B state errors from 50.6% to 0.6% while adding formatting failures. Replicated on Tower of Hanoi."
+          - "Built the harness behind those results: 810 automated tests, SHA-256-pinned verbatim prompts, parser audits, token-budget controls, and resumable detached grid runners for unattended multi-day GPU sweeps."
+          - "Vision-language grounding (manuscript in final preparation for CVPR 2027): characterized the “mirage” failure in which VLMs answer confidently from blank or unrelated images, and evaluated TIDE, a training objective pairing each question with its correct image, a blank image requiring refusal, and a same-domain wrong image requiring refusal, with a population-level guarantee that image-blind predictors are suboptimal by at least log 3 nats."
+          - "Fine-tuned Qwen3-VL at 2B/4B/8B/32B with 4-bit QLoRA; TIDE was evaluated with LoRA on six VLMs scored by an image-aware judge: blank-image mirage fell to zero on all six and between-model variation on unseen out-of-domain images narrowed from 0.473 to 0.042, while in-domain wrong-image mirage persisted at 27.8–34.8%."
+          - "Traced an apparent scale-dependent trend across the model ladder to a projector co-scaling artifact, reporting a documented null result; showed that representation-level grounding alone does not reduce blank-image mirage on converged models."
+          - "Dissertation (generative augmentation for rare-lesion detection): designing a mask-conditional latent diffusion model that operates in a VQ-VAE latent space with ControlNet-style conditioning on radiologist-delineated lesion masks, for a regime with only a handful of confirmed abuse cases per center per year; the pipeline couples diffusion augmentation with transformer detection and few-shot classification, after a pilot showed unconditioned diffusion cannot produce coherent skeletal anatomy."
+          - "Neuromorphic sensing interfaces (under review at ICASSP 2027): showed that rate readout from leak-free spiking front-ends on event-camera data discards temporal information, and proposed MoHI, a moment-based spiking-to-analog handoff equivariant to affine time warps; perfect accuracy where rate readout stayed at chance (DVS-Gesture, N-MNIST, CIFAR10-DVS)."
+          - "Multi-view fusion pilot (manuscript in preparation): showed that naive cross-view max-fusion recovers recall but inflates false positives on normal studies; established the tradeoff as intrinsic at the score level."
+          - "Pre-register kill criteria and decision gates before committing GPU budget; IRB-approved clinical data collection with pediatric radiology collaborators at Riley Hospital for Children."
+      - id: augmedix
+        title: Augmedix — Software Engineer L2, Backend and ML Infrastructure
+        subtitle: Jul 2022 – Jul 2025 · Dhaka, Bangladesh
+        fields:
+          - id: employer
+            label: Employer
+            value: Augmedix
+          - id: employer_url
+            label: Employer website
+            value: https://augmedix.com/
+            url: https://augmedix.com/
+          - id: title
+            label: Job title
+            value: Software Engineer Level 2 — Backend and ML Infrastructure
+          - id: title_short
+            label: Job title (short)
+            value: Software Engineer L2
+          - id: location
+            label: Location
+            value: Dhaka, Bangladesh
+          - id: start
+            label: Start date
+            value: July 2022
+          - id: start_mmyyyy
+            label: Start date (MM/YYYY)
+            value: 07/2022
+          - id: end
+            label: End date
+            value: July 2025
+          - id: end_mmyyyy
+            label: End date (MM/YYYY)
+            value: 07/2025
+          - id: current
+            label: Currently working here?
+            value: "No"
+          - id: type
+            label: Employment type
+            value: ""
+            hint: Full-time vs. contract not confirmed in your files (open question Q6). Add locally.
+        bullets:
+          - "Fine-tuned large language models for clinical note generation using LoRA/PEFT, and built the evaluation loop around them: factual-consistency and hallucination checks comparing generated documentation against source encounter transcripts."
+          - "Engineered scalable Python and SQL pipelines on AWS carrying high-throughput clinical audio and NLP streams into real-time generative documentation; served models through internal FastAPI/Django endpoints."
+          - "Re-architected and migrated legacy services onto Kubernetes with CI/CD, monitoring dashboards, and A/B rollout infrastructure, partnering with ML, backend, and clinical-operations teams on each deployment."
+      - id: ideeza
+        title: IDEEZA — AI Engineer, Generative AI and Computer Vision
+        subtitle: Sep 2023 – Jul 2025 · Remote
+        fields:
+          - id: employer
+            label: Employer
+            value: IDEEZA
+          - id: employer_url
+            label: Employer website
+            value: https://www.ideeza.com/
+            url: https://www.ideeza.com/
+          - id: title
+            label: Job title
+            value: AI Engineer — Generative AI and Computer Vision
+          - id: title_short
+            label: Job title (short)
+            value: AI Engineer
+          - id: location
+            label: Location
+            value: Remote
+          - id: start
+            label: Start date
+            value: September 2023
+          - id: start_mmyyyy
+            label: Start date (MM/YYYY)
+            value: 09/2023
+          - id: end
+            label: End date
+            value: July 2025
+          - id: end_mmyyyy
+            label: End date (MM/YYYY)
+            value: 07/2025
+          - id: current
+            label: Currently working here?
+            value: "No"
+          - id: type
+            label: Employment type
+            value: ""
+            hint: Full-time vs. contract not confirmed in your files (open question Q6). Add locally.
+        bullets:
+          - "Trained reward models and applied preference optimization to align generative outputs with human-rated quality, and designed LLM-orchestrated workflows routing a request across several generative models into one deliverable."
+          - "Engineered multimodal image-to-3D reconstruction pipelines on Stable Diffusion and ControlNet, deployed at dev-ai-mesh.ideeza.com, with automated quality control scored by FID, SSIM, and LPIPS rather than manual review."
+      - id: radassist
+        title: RadAssist — Research Engineer, AI Systems
+        subtitle: May 2022 – Jul 2025 · Dhaka, Bangladesh
+        fields:
+          - id: employer
+            label: Employer
+            value: RadAssist
+          - id: employer_url
+            label: Employer website
+            value: https://radassist.net/
+            url: https://radassist.net/
+          - id: title
+            label: Job title
+            value: Research Engineer — AI Systems
+          - id: title_short
+            label: Job title (short)
+            value: Research Engineer
+          - id: location
+            label: Location
+            value: Dhaka, Bangladesh
+          - id: start
+            label: Start date
+            value: May 2022
+          - id: start_mmyyyy
+            label: Start date (MM/YYYY)
+            value: 05/2022
+          - id: end
+            label: End date
+            value: July 2025
+          - id: end_mmyyyy
+            label: End date (MM/YYYY)
+            value: 07/2025
+          - id: current
+            label: Currently working here?
+            value: "No"
+          - id: type
+            label: Employment type
+            value: ""
+            hint: Full-time vs. contract not confirmed in your files (open question Q6). Add locally.
+        bullets:
+          - "Led R&D on a multi-label CNN classifier identifying 17 distinct radiological findings from chest X-rays, including per-class threshold selection and confidence calibration."
+          - "Instrumented evaluation pipelines with confusion-matrix analysis, calibration assessment, and systematic failure-mode review; deployed NLP summarization models translating structured predictions into readable clinical narratives."
+
+  # ───────────────────────────── 4. PROJECTS ─────────────────────────────
+  - id: projects
+    title: Projects
+    intro: Open-source and research projects as described on the CV.
+    cards:
+      - id: rag
+        title: RAG-Based Clinical Note Summarizer
+        subtitle: LangChain · LLMs · Vector databases · Python
+        fields:
+          - id: title
+            label: Project title
+            value: RAG-Based Clinical Note Summarizer
+          - id: link
+            label: Link
+            value: https://github.com/Alfaj10408/RAG-based-Clinical-Note-Summarizer
+            url: https://github.com/Alfaj10408/RAG-based-Clinical-Note-Summarizer
+          - id: tech
+            label: Technologies
+            value: LangChain, LLMs, Vector Databases, Python
+          - id: role
+            label: Role
+            value: Sole developer (open source)
+        bullets:
+          - "Engineered a retrieval-augmented generation pipeline that retrieves domain-specific clinical context at query time and conditions an LLM on it, reducing reliance on parametric recall for factual content."
+      - id: genfill
+        title: Generative Fill Adapter — Semantic Inpainting with Diffusion Models
+        subtitle: PyTorch · Stable Diffusion · ControlNet · LoRA · HuggingFace PEFT
+        fields:
+          - id: title
+            label: Project title
+            value: Generative Fill Adapter — Semantic Inpainting with Diffusion Models
+          - id: title_short
+            label: Project title (short)
+            value: Generative Fill Adapter
+          - id: link
+            label: Link
+            value: https://github.com/Alfaj10408/Generative-Fill-Adapter
+            url: https://github.com/Alfaj10408/Generative-Fill-Adapter
+          - id: tech
+            label: Technologies
+            value: PyTorch, Stable Diffusion, ControlNet, LoRA, HuggingFace PEFT
+          - id: role
+            label: Role
+            value: Sole developer (open source)
+        bullets:
+          - "Conditioned Stable Diffusion on semantic segmentation masks through a ControlNet-style adapter fine-tuned with LoRA, and compared conditioning strategies in an ablation scored on FID, SSIM, and LPIPS."
+      - id: ssl
+        title: Self-Supervised Representation Learning for Sequential Signals
+        subtitle: PyTorch · Transformers · Contrastive learning · Masked modeling
+        fields:
+          - id: title
+            label: Project title
+            value: Self-Supervised Representation Learning for Sequential Signals
+          - id: link
+            label: Link
+            value: https://github.com/Alfaj10408/SSL-ECG-Encoder
+            url: https://github.com/Alfaj10408/SSL-ECG-Encoder
+          - id: tech
+            label: Technologies
+            value: PyTorch, Transformers, Contrastive Learning, Masked Modeling
+          - id: role
+            label: Role
+            value: Sole developer (open source)
+        bullets:
+          - "Pretrained transformer encoders on unlabeled 1D signal corpora with a combined contrastive and masked-reconstruction objective, then evaluated the learned representations on downstream sequence classification under transfer."
+      - id: cloud
+        title: Cloud-Native ML Training and Serving Pipeline
+        subtitle: AWS SageMaker · PyTorch DDP · Docker · FastAPI · REST
+        fields:
+          - id: title
+            label: Project title
+            value: Cloud-Native ML Training and Serving Pipeline
+          - id: link
+            label: Link
+            value: https://github.com/Alfaj10408/AWS-Arrhythmia-Pipeline
+            url: https://github.com/Alfaj10408/AWS-Arrhythmia-Pipeline
+          - id: tech
+            label: Technologies
+            value: AWS SageMaker, PyTorch DDP, Docker, FastAPI, REST
+          - id: role
+            label: Role
+            value: Sole developer (open source)
+        bullets:
+          - "Architected multi-GPU training with PyTorch DDP and hyperparameter sweeps on SageMaker, then served the resulting classifiers from containerized FastAPI endpoints with logging and monitoring attached for reproducibility across environments."
+      - id: text3d
+        title: Text-to-3D Asset Generator
+        subtitle: PyTorch · Shap-E · NeRF · Implicit neural representations
+        fields:
+          - id: title
+            label: Project title
+            value: Text-to-3D Asset Generator
+          - id: link
+            label: Link
+            value: https://github.com/Alfaj10408/Text-to-3D-Asset-Generator
+            url: https://github.com/Alfaj10408/Text-to-3D-Asset-Generator
+          - id: tech
+            label: Technologies
+            value: PyTorch, Shap-E, NeRF, Implicit Neural Representations
+          - id: role
+            label: Role
+            value: Sole developer (open source)
+        bullets:
+          - "Built an end-to-end text-conditioned generation pipeline producing structured 3D assets through implicit neural representations, with prompt-to-geometry consistency checked across sampling configurations."
+      - id: lowlight
+        title: Real-Time Low-Light Video Enhancement
+        subtitle: Edge-optimized CNNs · OpenCV · C++ (Android NDK)
+        fields:
+          - id: title
+            label: Project title
+            value: Real-Time Low-Light Video Enhancement
+          - id: link
+            label: Link
+            value: https://github.com/Alfaj10408/Mobile-LowLight-Enhancer
+            url: https://github.com/Alfaj10408/Mobile-LowLight-Enhancer
+          - id: tech
+            label: Technologies
+            value: Edge-optimized CNNs, OpenCV, C++, Android NDK
+        bullets:
+          - "Real-time low-light video enhancement with edge-optimized CNNs and OpenCV, designed for on-device execution."
+      - id: stress
+        title: Multimodal Stress Detection from Wearables
+        subtitle: Sensor fusion · Ensemble models · HRV and EDA signals
+        fields:
+          - id: title
+            label: Project title
+            value: Multimodal Stress Detection from Wearable HRV and EDA Signals
+          - id: link
+            label: Link
+            value: https://github.com/Alfaj10408/Multimodal-Stress-Detect
+            url: https://github.com/Alfaj10408/Multimodal-Stress-Detect
+          - id: tech
+            label: Technologies
+            value: Sensor fusion, ensemble models, HRV and EDA signal processing, Python
+        bullets:
+          - "Multimodal stress detection from wearable HRV and EDA signals using sensor fusion and ensemble models."
+      - id: icu
+        title: ICU Communication Web Application
+        subtitle: Vue.js · Nuxt.js · Firebase (private repository)
+        fields:
+          - id: title
+            label: Project title
+            value: ICU Communication Web Application
+          - id: tech
+            label: Technologies
+            value: Vue.js, Nuxt.js, Firebase
+        bullets:
+          - "ICU communication web application built with Vue.js, Nuxt.js, and Firebase."
+      - id: diet
+        title: Automatic Diet Monitoring System
+        subtitle: MATLAB · Arduino · Kinematic signal processing
+        fields:
+          - id: title
+            label: Project title
+            value: Automatic Diet Monitoring System
+          - id: tech
+            label: Technologies
+            value: MATLAB, Arduino, kinematic signal processing
+        bullets:
+          - "Automatic diet monitoring system using MATLAB, Arduino, and kinematic signal processing."
+
+  # ───────────────────────────── 5. SKILLS ─────────────────────────────
+  - id: skills
+    title: Skills
+    intro: Grouped as on the CV. Each group has a comma-separated field for form boxes; individual skills are listed below it.
+    cards:
+      - id: skills_all
+        title: All skills (comma-separated)
+        open: true
+        fields:
+          - id: all
+            label: All skills
+            multiline: false
+            value: "Python, C/C++, SQL, Bash, MATLAB, JavaScript, PyTorch, TensorFlow, HuggingFace Transformers, Diffusers, PEFT, Accelerate, LoRA, QLoRA, vLLM, Qwen3, prompt design, structured output, reasoning-mode evaluation, retrieval-augmented generation, question answering, clinical text processing, spaCy, NLTK, LangChain, vision-language models, diffusion models, DDPM, latent diffusion, ControlNet, VQ-VAE, GANs, contrastive learning, self-supervised learning, CNNs, object detection, Vision Transformers, experimental design, pre-registered ablations, binomial and Clopper–Pearson intervals, bootstrap, error taxonomies, calibration, mAP, AUC, sensitivity/specificity, FID, SSIM, LPIPS, KID, automated test suites, PyTorch DDP, DeepSpeed, H100/A100 clusters, CUDA, AWS SageMaker, EC2, S3, Lambda, Docker, Kubernetes, FastAPI, Flask, Django, PostgreSQL, Firebase, Git, GitHub Actions, CI/CD, Linux"
+          - id: languages
+            label: Programming languages
+            value: Python, C/C++, SQL, Bash, MATLAB, JavaScript
+          - id: top10
+            label: Top skills (short list)
+            value: Python, PyTorch, LLM fine-tuning (LoRA/QLoRA), vLLM, vision-language models, diffusion models, experimental design and evaluation, AWS, Docker, Kubernetes
+      - id: skills_llm
+        title: LLMs & NLP
+        fields:
+          - id: csv
+            label: LLMs & NLP (comma-separated)
+            value: Qwen3 and open instruction-tuned models, prompt design, structured output, reasoning-mode evaluation, LoRA/QLoRA/PEFT fine-tuning, vLLM serving, question answering, retrieval-augmented generation, clinical text processing, spaCy, NLTK, LangChain
+        bullets:
+          - Qwen3 and open instruction-tuned model families
+          - Prompt design and structured output generation
+          - Reasoning-mode evaluation
+          - LoRA / QLoRA / PEFT fine-tuning
+          - vLLM serving
+          - Question answering
+          - Retrieval-augmented generation (RAG)
+          - Clinical text processing
+          - spaCy, NLTK, LangChain
+      - id: skills_dl
+        title: Deep Learning & Generative AI
+        fields:
+          - id: csv
+            label: Deep Learning & Generative AI (comma-separated)
+            value: PyTorch, HuggingFace (Transformers, Diffusers, PEFT, Accelerate), TensorFlow, transformer and attention architectures, vision-language models, diffusion models (DDPM, latent diffusion, ControlNet), VQ-VAE, GANs, contrastive and self-supervised learning, CNNs, object detection, Vision Transformers
+        bullets:
+          - PyTorch
+          - HuggingFace (Transformers, Diffusers, PEFT, Accelerate)
+          - TensorFlow
+          - Transformer and attention architectures
+          - Vision-language models
+          - Diffusion models (DDPM, latent diffusion, ControlNet)
+          - VQ-VAE and GANs
+          - Contrastive and self-supervised learning
+          - CNNs, object detection, Vision Transformers (ViT)
+      - id: skills_eval
+        title: Experimentation & Evaluation
+        fields:
+          - id: csv
+            label: Experimentation & Evaluation (comma-separated)
+            value: Experimental design, pre-registered ablations, binomial / Clopper–Pearson / bootstrap intervals, error taxonomies, calibration, mAP / AUC / sensitivity-specificity, FID / SSIM / LPIPS / KID, automated test suites
+        bullets:
+          - Experimental design and pre-registered ablations
+          - Binomial, Clopper–Pearson, and bootstrap uncertainty estimates
+          - Error taxonomies and failure-mode analysis
+          - Calibration assessment
+          - mAP, AUC, sensitivity/specificity
+          - FID, SSIM, LPIPS, KID
+          - Automated test suites
+      - id: skills_systems
+        title: Programming & Systems
+        fields:
+          - id: csv
+            label: Programming & Systems (comma-separated)
+            value: Python, C/C++, SQL, Bash, MATLAB, JavaScript, PyTorch DDP, DeepSpeed, H100/A100 clusters, CUDA, AWS (SageMaker, EC2, S3, Lambda), Docker, Kubernetes, FastAPI, Flask, Django, PostgreSQL, Firebase, Git, GitHub Actions, CI/CD, Linux
+        bullets:
+          - Python (primary), C/C++, SQL, Bash, MATLAB, JavaScript
+          - PyTorch DDP, DeepSpeed, H100/A100 clusters, CUDA
+          - AWS (SageMaker, EC2, S3, Lambda)
+          - Docker, Kubernetes
+          - FastAPI, Flask, Django
+          - PostgreSQL, Firebase
+          - Git, GitHub Actions, CI/CD, Linux
+
+  # ───────────────────────────── 6. OTHER ─────────────────────────────
+  - id: other
+    title: Publications, awards & summaries
+    intro: Verified items from the CV. Publication status labels are exact; keep them when pasting.
+    cards:
+      - id: summary
+        title: Professional summary
+        open: true
+        fields:
+          - id: headline
+            label: Headline (one line)
+            value: Ph.D. student in Biomedical Engineering at Purdue University working on LLM and vision-language model reliability, generative augmentation for medical imaging, and neuromorphic sensing interfaces.
+          - id: short
+            label: Short summary (2–3 sentences)
+            multiline: true
+            value: |-
+              Ph.D. student and Leslie A. Geddes Fellow at Purdue University's Weldon School of Biomedical Engineering, concurrently completing an M.S. in Electrical and Computer Engineering. My research asks how machine learning systems fail and how to train and evaluate them so those failures become measurable and fixable, spanning LLM long-horizon execution, vision-language grounding, neuromorphic sensing interfaces, and generative augmentation for pediatric fracture detection. Previously three years building production ML and generative-AI systems at Augmedix, IDEEZA, and RadAssist.
+          - id: long
+            label: Full summary (3 paragraphs)
+            multiline: true
+            value: |-
+              I am a Ph.D. student and Leslie A. Geddes Fellow at Purdue University's Weldon School of Biomedical Engineering, co-advised by Dr. Rachel K. Surowiec (Quantitative Biomedical Imaging and Spectroscopy Lab) and Dr. Christopher L. Newman (Indiana University School of Medicine, Riley Hospital for Children). I am concurrently completing an M.S. in Electrical and Computer Engineering at Purdue.
+
+              My research asks how machine learning systems fail, and how to train and evaluate them so that those failures become measurable and fixable. Current threads: failure-composition evaluation of large language models on long-horizon tasks (under review at ICLR 2027), evidence-grounded training for vision-language models (manuscript in final preparation for CVPR 2027), moment-based spiking-to-analog interfaces for event cameras (under review at ICASSP 2027), and generative augmentation for pediatric fracture detection from radiographs.
+
+              Before Purdue I spent three years building production ML and generative-AI systems at Augmedix, IDEEZA, and RadAssist: LoRA fine-tuning of clinical LLMs, Stable Diffusion and ControlNet pipelines, and a 17-finding chest X-ray classifier, all shipped with evaluation loops attached.
+          - id: interests
+            label: Research interests (comma-separated)
+            value: Large Language Models, Reasoning and Long-Horizon Execution Failures, Vision-Language Models, Grounding and Hallucination, Evaluation and Failure-Mode Analysis, Generative AI and Diffusion Models, Parameter-Efficient Fine-Tuning, Clinical NLP, Medical Image Analysis, Rare-Event Detection under Label Scarcity, Scalable ML Systems
+      - id: pub_iclr
+        title: Publication — ICLR 2027 submission (under review)
+        fields:
+          - id: title
+            label: Title
+            value: "A Benchmark Score Is Not a Property of a Model: Failure Composition Reorganizes Across Operating Regimes"
+          - id: authors
+            label: Authors
+            value: Alfaj Uddin Ahmed, et al.
+          - id: venue
+            label: Venue / status
+            value: Submitted to ICLR 2027 (under review)
+          - id: year
+            label: Year
+            value: "2026"
+          - id: citation
+            label: Citation
+            value: "Alfaj Uddin Ahmed, et al. (2026). A Benchmark Score Is Not a Property of a Model: Failure Composition Reorganizes Across Operating Regimes. Under review at ICLR 2027."
+      - id: pub_cvpr
+        title: Publication — CVPR 2027 manuscript (in preparation)
+        fields:
+          - id: title
+            label: Title
+            value: "Why Models See Mirages: An Evidence-Starvation Theory of Ungrounded Multimodal Reasoning, and TIDE, a Training Objective That Provably Removes It"
+          - id: authors
+            label: Authors
+            value: Alfaj Uddin Ahmed, et al.
+          - id: venue
+            label: Venue / status
+            value: Manuscript in final preparation for CVPR 2027; OpenReview preprint forthcoming
+          - id: citation
+            label: Citation
+            value: "Alfaj Uddin Ahmed, et al. Why Models See Mirages: An Evidence-Starvation Theory of Ungrounded Multimodal Reasoning, and TIDE, a Training Objective That Provably Removes It. Manuscript in final preparation for CVPR 2027."
+      - id: pub_icassp
+        title: Publication — ICASSP 2027 submission (under review)
+        fields:
+          - id: title
+            label: Title
+            value: "Temporal Moments at the SNN–ANN Interface: What Rate Readout Loses in Event-Based Vision"
+          - id: authors
+            label: Authors (in order)
+            value: Alfaj Uddin Ahmed, Shoaib Ahmed Dipu, Md. Shaown Miah, Ruhi Sharmin, Kamrul Hasan, Sayeed Shafayet Chowdhury
+          - id: position
+            label: Your author position
+            value: First author
+          - id: venue
+            label: Venue / status
+            value: Submitted to ICASSP 2027 (under review)
+          - id: year
+            label: Year
+            value: "2026"
+          - id: citation
+            label: Citation
+            value: "Alfaj Uddin Ahmed, Shoaib Ahmed Dipu, Md. Shaown Miah, Ruhi Sharmin, Kamrul Hasan, and Sayeed Shafayet Chowdhury (2026). Temporal Moments at the SNN–ANN Interface: What Rate Readout Loses in Event-Based Vision. Under review at ICASSP 2027."
+      - id: pub_tensymp
+        title: Publication — IEEE TENSYMP 2020 (published)
+        fields:
+          - id: title
+            label: Title
+            value: IoT Based Cost Efficient Muscle Stimulator for Biomedical Application
+          - id: authors
+            label: Authors (in order)
+            value: Md. Latifur Rahman, Md. Jahin Alam, Nayeed Rashid, Lamiya Hassan Tithy, Alfaj Uddin Ahmed, M Tarik Arafat
+          - id: position
+            label: Your author position
+            value: Fifth author
+          - id: venue
+            label: Venue
+            value: 2020 IEEE Region 10 Symposium (TENSYMP), Dhaka, Bangladesh, 5–7 June 2020
+          - id: pages
+            label: Pages
+            value: 634–637
+          - id: year
+            label: Year
+            value: "2020"
+          - id: doi
+            label: DOI
+            value: 10.1109/TENSYMP50017.2020.9231015
+            url: https://doi.org/10.1109/TENSYMP50017.2020.9231015
+          - id: url
+            label: IEEE Xplore URL
+            value: https://ieeexplore.ieee.org/document/9231015
+            url: https://ieeexplore.ieee.org/document/9231015
+          - id: citation
+            label: Citation
+            value: "Md. Latifur Rahman, Md. Jahin Alam, Nayeed Rashid, Lamiya Hassan Tithy, Alfaj Uddin Ahmed, and M Tarik Arafat (2020). IoT Based Cost Efficient Muscle Stimulator for Biomedical Application. In 2020 IEEE Region 10 Symposium (TENSYMP), pp. 634–637. IEEE. DOI: 10.1109/TENSYMP50017.2020.9231015"
+      - id: awards
+        title: Awards & honors
+        fields:
+          - id: geddes
+            label: Leslie A. Geddes Fellowship
+            value: Leslie A. Geddes Fellowship, Purdue University (June 2025) — competitive graduate fellowship awarded for academic and research excellence in biomedical engineering.
+          - id: kaggle
+            label: Kaggle Bronze Medal
+            value: Kaggle Bronze Medal, RSNA Intracranial Aneurysm Detection (2025) — placed 98th (top 5%) with a score of 0.69592 on a multi-class medical imaging classification task.
+          - id: ventilator
+            label: Design for Life — 2nd Place
+            value: Design for Life Ventilator Engineering Competition, 2nd Place, Edge Foundation (July 2020) — built a functional mechanical ventilator from first principles under competition constraints.
+          - id: ieee_sps
+            label: IEEE SPS Winter School — Excellence Award
+            value: IEEE SPS Winter School on Multimodal Signal Processing, Excellence Award, IEEE Signal Processing Society (September 2019).
+          - id: erc
+            label: European Rover Challenge — Sub-Team Lead
+            value: European Rover Challenge 2019, Hardware Sub-Team Lead, The European Space Foundation — led a hardware sub-team through design and integration for an international Mars-rover competition; team placed 16th globally.
+          - id: awards_list
+            label: All awards (one per line)
+            multiline: true
+            value: |-
+              Leslie A. Geddes Fellowship, Purdue University (June 2025)
+              Kaggle Bronze Medal, RSNA Intracranial Aneurysm Detection (2025), 98th place, top 5%
+              Design for Life Ventilator Engineering Competition, 2nd Place, Edge Foundation (July 2020)
+              IEEE SPS Winter School on Multimodal Signal Processing, Excellence Award (September 2019)
+              European Rover Challenge 2019, Hardware Sub-Team Lead, team placed 16th globally
+      - id: leadership
+        title: Leadership & service
+        fields:
+          - id: erc_role
+            label: European Rover Challenge
+            value: Sub-Team Lead (hardware), European Rover Challenge 2019, The European Space Foundation
+          - id: robotics
+            label: Robotics Society of BUET
+            value: Logistics Secretary, Robotics Society of BUET — coordinated equipment, procurement, and travel logistics for competitive robotics teams and technical outreach events.
+      - id: certifications
+        title: Certifications
+        fields:
+          - id: none
+            label: Certifications
+            value: ""
+            hint: None documented in your CV. Add locally if you hold any.

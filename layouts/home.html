@@ -1,0 +1,133 @@
+{{/*
+  Application Copy Center — single-page layout.
+  Content comes from data/application.yaml. Fields marked `private: true` have no value in
+  the build; they are typed into the browser and stored in localStorage only.
+*/}}
+{{ define "main" }}
+{{ $app := hugo.Data.application }}
+{{ $fields := dict }}
+{{ range $sec := $app.sections }}
+  {{ range $card := $sec.cards }}
+    {{ $cid := printf "%s.%s" $sec.id $card.id }}
+    {{ range $f := $card.fields }}
+      {{ $fid := printf "%s.%s" $cid $f.id }}
+      {{ $fields = merge $fields (dict $fid (dict
+          "label" $f.label
+          "value" ($f.value | default "")
+          "private" ($f.private | default false)
+          "multiline" ($f.multiline | default false)
+          "card" $card.title
+          "section" $sec.title)) }}
+    {{ end }}
+    {{ range $i, $b := $card.bullets }}
+      {{ $fid := printf "%s.bullet%d" $cid (add $i 1) }}
+      {{ $fields = merge $fields (dict $fid (dict "label" (printf "Bullet %d" (add $i 1)) "value" $b "private" false "multiline" false "card" $card.title "section" $sec.title)) }}
+    {{ end }}
+    {{ if $card.bullets }}
+      {{ $fid := printf "%s.full" $cid }}
+      {{ $fields = merge $fields (dict $fid (dict "label" "Full description" "value" (delimit $card.bullets "\n") "private" false "multiline" true "card" $card.title "section" $sec.title)) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<div class="cc-page" id="cc-page">
+  <header class="cc-header">
+    <h1 class="cc-title">{{ .Title }}</h1>
+    <p class="cc-lede">{{ .Summary }} Each value has its own Copy button and copies exactly that value as plain text.</p>
+    <div class="cc-notice" role="note">
+      <strong>Privacy.</strong> This page is public. Fields marked <em>private</em> (phone, street address, ZIP, application answers)
+      are never in the page source and are stored only in this browser's local storage on this device. They are not synced,
+      not sent anywhere, and will not appear on another device or browser. Local edits to other fields work the same way.
+      Last content update: {{ $app.updated }}.
+    </div>
+  </header>
+
+  <div class="cc-toolbar" role="search">
+    <label class="cc-sr" for="cc-search">Search fields</label>
+    <input id="cc-search" class="cc-search" type="search" placeholder="Search labels and values… (press / to focus)" autocomplete="off" spellcheck="false">
+    <span class="cc-count" id="cc-count" aria-live="polite"></span>
+    <div class="cc-toolbar-actions">
+      <button type="button" class="cc-btn cc-btn-ghost" id="cc-expand">Expand all</button>
+      <button type="button" class="cc-btn cc-btn-ghost" id="cc-collapse">Collapse all</button>
+      <button type="button" class="cc-btn cc-btn-danger" id="cc-clear">Clear local data</button>
+    </div>
+  </div>
+
+  <nav class="cc-nav" aria-label="Sections">
+    {{ range $app.sections }}<a href="#{{ .id }}">{{ .title }}</a>{{ end }}
+  </nav>
+
+  {{ range $sec := $app.sections }}
+  <section class="cc-section" id="{{ $sec.id }}" data-section>
+    <h2 class="cc-section-title">{{ $sec.title }}</h2>
+    {{ with $sec.intro }}<p class="cc-intro">{{ . }}</p>{{ end }}
+    {{ range $card := $sec.cards }}
+    {{ $cid := printf "%s.%s" $sec.id $card.id }}
+    <details class="cc-card" id="card-{{ $cid | anchorize }}" data-card data-title="{{ $card.title }} {{ $card.subtitle }}"{{ if $card.open }} open{{ end }}>
+      <summary class="cc-card-summary">
+        <span class="cc-card-title">{{ $card.title }}</span>
+        {{ with $card.subtitle }}<span class="cc-card-sub">{{ . }}</span>{{ end }}
+      </summary>
+      <div class="cc-card-body">
+        {{ range $f := $card.fields }}
+          {{ $fid := printf "%s.%s" $cid $f.id }}
+          {{ template "cc_field" (dict "id" $fid "label" $f.label "value" ($f.value | default "") "private" ($f.private | default false) "multiline" ($f.multiline | default false) "hint" ($f.hint | default "") "url" ($f.url | default "")) }}
+        {{ end }}
+        {{ if $card.bullets }}
+          <div class="cc-bullets">
+            {{ range $i, $b := $card.bullets }}
+              {{ template "cc_field" (dict "id" (printf "%s.bullet%d" $cid (add $i 1)) "label" (printf "Bullet %d" (add $i 1)) "value" $b "private" false "multiline" false "hint" "" "url" "") }}
+            {{ end }}
+            {{ template "cc_field" (dict "id" (printf "%s.full" $cid) "label" "Full description" "value" (delimit $card.bullets "\n") "private" false "multiline" true "hint" "All bullets, one per line." "url" "" "copyLabel" "Copy full description") }}
+          </div>
+        {{ end }}
+      </div>
+    </details>
+    {{ end }}
+  </section>
+  {{ end }}
+
+  <p class="cc-footnote">Content source: the public CV at <a href="https://alfaj10408.github.io/">alfaj10408.github.io</a>. To change professional content, edit <code>data/application.yaml</code> in the site repository.</p>
+</div>
+
+<dialog class="cc-dialog" id="cc-dialog">
+  <form method="dialog" class="cc-dialog-form">
+    <h3 class="cc-dialog-title">Copy manually</h3>
+    <p>The browser blocked clipboard access. The text below is selected; press <kbd>Ctrl</kbd>+<kbd>C</kbd> (or <kbd>⌘</kbd>+<kbd>C</kbd>) to copy it.</p>
+    <textarea id="cc-dialog-text" class="cc-dialog-text" readonly rows="6" aria-label="Value to copy"></textarea>
+    <div class="cc-editor-actions"><button type="submit" class="cc-btn cc-btn-primary">Close</button></div>
+  </form>
+</dialog>
+
+<script type="application/json" id="cc-data">{{ $fields | jsonify | safeJS }}</script>
+{{ $js := resources.Get "js/copycenter.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" crossorigin="anonymous" defer></script>
+{{ end }}
+
+{{ define "cc_field" }}
+{{ $copyLabel := .copyLabel | default (printf "Copy %s" .label) }}
+<div class="cc-field{{ if .private }} cc-private{{ end }}" data-field data-id="{{ .id }}" data-label="{{ .label }}" data-private="{{ .private }}">
+  <div class="cc-field-head">
+    <span class="cc-label" id="lbl-{{ .id | anchorize }}">{{ .label }}</span>
+    <span class="cc-badge cc-badge-private"{{ if not .private }} hidden{{ end }}>private · this browser only</span>
+    <span class="cc-badge cc-badge-local" data-role="local-badge" hidden>edited locally</span>
+  </div>
+  <div class="cc-value{{ if .multiline }} cc-multiline{{ end }}" data-role="value" tabindex="0" aria-labelledby="lbl-{{ .id | anchorize }}">{{ .value }}</div>
+  {{ with .hint }}<p class="cc-hint">{{ . }}</p>{{ end }}
+  <div class="cc-actions">
+    <button type="button" class="cc-btn cc-btn-copy" data-action="copy" aria-label="{{ $copyLabel }}">{{ if .copyLabel }}{{ .copyLabel }}{{ else }}Copy{{ end }}</button>
+    <span class="cc-feedback" data-role="feedback" role="status" aria-live="polite"></span>
+    <button type="button" class="cc-btn cc-btn-ghost" data-action="edit" aria-label="Edit {{ .label }}">{{ if .private }}Enter{{ else }}Edit{{ end }}</button>
+    {{ with .url }}<a class="cc-link" href="{{ . }}" target="_blank" rel="noopener">Open ↗</a>{{ end }}
+  </div>
+  <form class="cc-editor" data-role="editor" hidden>
+    <label class="cc-sr" for="ed-{{ .id | anchorize }}">Edit {{ .label }}</label>
+    <textarea id="ed-{{ .id | anchorize }}" class="cc-textarea" rows="{{ if .multiline }}8{{ else }}2{{ end }}" spellcheck="false"></textarea>
+    <div class="cc-editor-actions">
+      <button type="submit" class="cc-btn cc-btn-primary">Save locally</button>
+      <button type="button" class="cc-btn cc-btn-ghost" data-action="cancel">Cancel</button>
+      <button type="button" class="cc-btn cc-btn-ghost" data-action="reset">{{ if .private }}Delete local value{{ else }}Reset to original{{ end }}</button>
+    </div>
+  </form>
+</div>
+{{ end }}

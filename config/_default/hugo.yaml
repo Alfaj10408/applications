@@ -1,0 +1,24 @@
+# Hugo configuration — Internship Application Copy Center
+# Companion site to https://alfaj10408.github.io/ (separate repo, project Pages site at /applications/)
+title: 'Application Copy Center'
+baseURL: 'https://alfaj10408.github.io/applications/'
+
+defaultContentLanguage: en
+hasCJKLanguage: false
+defaultContentLanguageInSubdir: false
+removePathAccents: true
+
+build:
+  writeStats: true
+enableGitInfo: false
+enableEmoji: false
+enableRobotsTXT: false
+disableAliases: true
+disableKinds: [taxonomy, term, RSS, sitemap]
+outputs:
+  home: [HTML]
+timeout: 600000
+markup:
+  _merge: deep
+security:
+  _merge: deep
