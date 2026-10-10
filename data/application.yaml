@@ -415,9 +415,16 @@ sections:
             label: Employment type
             value: ""
             hint: Full-time vs. contract not confirmed in your files (open question Q6). Add locally.
+          - id: tech
+            label: Technologies
+            value: Stable Diffusion, ControlNet, TRELLIS, Hunyuan3D, PartSLIP, PartPacker, LLM-orchestrated agents, OpenSCAD, STEP/STL/GLB generation, reward models and preference optimization, FID/SSIM/LPIPS
         bullets:
           - "Trained reward models and applied preference optimization to align generative outputs with human-rated quality, and designed LLM-orchestrated workflows routing a request across several generative models into one deliverable."
           - "Engineered multimodal image-to-3D reconstruction pipelines on Stable Diffusion and ControlNet, deployed at dev-ai-mesh.ideeza.com, with automated quality control scored by FID, SSIM, and LPIPS rather than manual review."
+          - "Built 3D model generation pipelines on the current state-of-the-art generative 3D models, including TRELLIS, Hunyuan3D, PartSLIP, and PartPacker, producing part-aware 3D assets for downstream design workflows."
+          - "Developed PCB placement and part placement inside 3D host models, positioning boards and components within the target geometry."
+          - "Designed agentic, LLM-driven procedural 3D modeling that generates CAD-ready outputs from specifications: STEP, STL, and GLB files and OpenSCAD code."
+          - "Implemented 3D segmentation, partitioning, and assembly of generated models into part hierarchies."
       - id: radassist
         title: RadAssist — Research Engineer, AI Systems
         subtitle: May 2022 – Jul 2025 · Dhaka, Bangladesh
