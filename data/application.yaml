@@ -13,7 +13,7 @@
 #   fields[]:   id, label, value?, private?, multiline?, hint?, url? (renders a link next to the value)
 #   bullets[]:  plain strings; each becomes "Bullet n" plus a joined "Full description" field
 # ──────────────────────────────────────────────────────────────────────────────
-updated: 2026-10-08
+updated: 2026-10-09
 
 sections:
   # ───────────────────────────── 1. PERSONAL ─────────────────────────────
@@ -753,7 +753,7 @@ sections:
         fields:
           - id: title
             label: Title
-            value: "Why Models See Mirages: An Evidence-Starvation Theory of Ungrounded Multimodal Reasoning, and TIDE, a Training Objective That Provably Removes It"
+            value: "Teaching Vision-Language Models to Decline: Support Completion Against Mirage"
           - id: authors
             label: Authors
             value: Alfaj Uddin Ahmed, et al.
@@ -762,7 +762,7 @@ sections:
             value: Manuscript in final preparation for CVPR 2027; OpenReview preprint forthcoming
           - id: citation
             label: Citation
-            value: "Alfaj Uddin Ahmed, et al. Why Models See Mirages: An Evidence-Starvation Theory of Ungrounded Multimodal Reasoning, and TIDE, a Training Objective That Provably Removes It. Manuscript in final preparation for CVPR 2027."
+            value: "Alfaj Uddin Ahmed, et al. Teaching Vision-Language Models to Decline: Support Completion Against Mirage. Manuscript in final preparation for CVPR 2027."
       - id: pub_icassp
         title: Publication — ICASSP 2027 submission (under review)
         fields:
