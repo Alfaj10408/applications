@@ -13,7 +13,7 @@
 #   fields[]:   id, label, value?, private?, multiline?, hint?, url? (renders a link next to the value)
 #   bullets[]:  plain strings; each becomes "Bullet n" plus a joined "Full description" field
 # ──────────────────────────────────────────────────────────────────────────────
-updated: 2026-10-09
+updated: 2026-10-10
 
 sections:
   # ───────────────────────────── 1. PERSONAL ─────────────────────────────
@@ -206,6 +206,9 @@ sections:
           - id: institution
             label: Institution
             value: Purdue University
+          - id: school
+            label: School / department
+            value: Elmore Family School of Electrical and Computer Engineering
           - id: degree
             label: Degree
             value: Master of Science (M.S.)
